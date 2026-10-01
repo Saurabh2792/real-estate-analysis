@@ -1,0 +1,29 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+
+# 1. Load Data
+df = pd.read_csv('data/dataset.csv')
+
+# 2. Data Cleaning: Fill missing values with the median
+df.fillna(df.median(), inplace=True)
+print("Cleaned Data:\n", df.head())
+
+# 3. Analysis & Visualization: Price vs Square Footage
+plt.scatter(df['SquareFeet'], df['Price'], color='blue')
+plt.title('House Price vs Square Footage')
+plt.xlabel('Square Feet')
+plt.ylabel('Price ($)')
+plt.savefig('price_vs_sqft.png') # Saves your required graph
+plt.show()
+
+# 4. Prediction Model: Linear Regression
+X = df[['SquareFeet', 'Bedrooms', 'Age_Years']]
+y = df['Price']
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+print(f"Model Score (Accuracy): {model.score(X_test, y_test):.2f}")

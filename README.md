@@ -1,4 +1,5 @@
 # Real Estate Market Trends Analysis
+**Intern ID:** CITS8270
 
 This project analyzes housing market data to predict property prices based on square footage, bedroom count, and age. It was built as a foundational data science project utilizing machine learning for predictive analytics.
 
